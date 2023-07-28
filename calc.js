@@ -31,6 +31,7 @@ buttons.forEach(button => button.addEventListener('click', () => {
 equalsButtonEl.addEventListener('click', () => {
     let numbers = splitNumbersOperations(input)[0];
     let operations = splitNumbersOperations(input) [1];
+    // Removes operations when they're completed until none remaining
     while (operations.length > 0){
         for (let i = 0; i < operationOrder.length; i++){
             while (operations.includes(operationOrder[i])){
@@ -42,8 +43,9 @@ equalsButtonEl.addEventListener('click', () => {
 })
 
 function bidmas(operation, operations, numbers){
+    // Finds the operations in bidmas order
     let index = operations.indexOf(operation);
-    console.log(numbers[index], numbers[index+1])
+    // Operates on the two relevant numbers before updating the arrays
     let currentResult = operate(operations[index], numbers[index], numbers[index + 1]);
     numbers.splice(index, 2, currentResult);
     operations.splice(index, 1);
