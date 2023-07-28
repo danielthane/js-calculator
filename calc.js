@@ -32,23 +32,16 @@ equalsButtonEl.addEventListener('click', () => {
     let numbers = splitNumbersOperations(input)[0];
     let operations = splitNumbersOperations(input) [1];
     while (operations.length > 0){
-        while (operations.includes(operationOrder[0])){
-            doOperations(operationOrder[0], operations, numbers)
-        }
-        while (operations.includes(operationOrder[1])){
-            doOperations(operationOrder[1], operations, numbers)
-        }
-        while (operations.includes(operationOrder[2])){
-            doOperations(operationOrder[2], operations, numbers)
-        }
-        while (operations.includes(operationOrder[3])){
-            doOperations(operationOrder[3], operations, numbers)
+        for (let i = 0; i < operationOrder.length; i++){
+            while (operations.includes(operationOrder[i])){
+                bidmas(operationOrder[i], operations, numbers)
+            }
         }
     displayTextEl.textContent += `=${numbers[0]}`;
     }
 })
 
-function doOperations(operation, operations, numbers){
+function bidmas(operation, operations, numbers){
     let index = operations.indexOf(operation);
     console.log(numbers[index], numbers[index+1])
     let currentResult = operate(operations[index], numbers[index], numbers[index + 1]);
